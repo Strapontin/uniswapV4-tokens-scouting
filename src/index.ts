@@ -10,8 +10,13 @@ const client = createPublicClient({
   transport: http(rpcUrl),
 });
 
+const DEFAULT_CHAIN_ID = "130";
 const LOGS_DIR = "./logs";
 const OUTPUT_FILE = join(LOGS_DIR, "token_metadata.json");
+
+function getChainLogsDir(chainId: string = DEFAULT_CHAIN_ID) {
+  return join(LOGS_DIR, chainId);
+}
 
 type TokenMetadata = {
   address: Address;
@@ -63,19 +68,21 @@ function readExistingMetadata(): TokenMetadataMap {
   }
 }
 
-function collectAddressesFromLogs(): Address[] {
-  if (!existsSync(LOGS_DIR)) {
-    console.log("LOGS_DIR not found")
+function collectAddressesFromLogs(chainId: string = DEFAULT_CHAIN_ID): Address[] {
+  const chainLogsDir = getChainLogsDir(chainId);
+
+  if (!existsSync(chainLogsDir)) {
+    console.log(`${chainLogsDir} not found`);
     return [];
   }
 
-  const files = readdirSync(LOGS_DIR).filter((file) => file.endsWith(".json"));
+  const files = readdirSync(chainLogsDir).filter((file) => file.endsWith(".json"));
   const addresses = new Set<string>();
 
   for (const file of files) {
     if (file === "token_metadata.json") continue;
 
-    const filePath = join(LOGS_DIR, file);
+    const filePath = join(chainLogsDir, file);
     const raw = readFileSync(filePath, "utf8");
 
     try {
@@ -153,7 +160,7 @@ async function fetchTokenMetadata(addresses: Address[]) {
 }
 
 async function main() {
-  const addresses = collectAddressesFromLogs();
+  const addresses = collectAddressesFromLogs(DEFAULT_CHAIN_ID);
   const existing = readExistingMetadata();
   const missing = addresses.filter((address) => !(address.toLowerCase() in existing));
 
