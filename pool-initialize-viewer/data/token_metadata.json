@@ -1,0 +1,198 @@
+{
+  "0x0000000000000000000000000000000000000000": {
+    "address": "0x0000000000000000000000000000000000000000",
+    "name": null,
+    "symbol": null,
+    "decimals": null,
+    "fetchedAt": "2026-08-29T11:45:01.082Z"
+  },
+  "0x0555e30da8f98308edb960aa94c0db47230d2b9c": {
+    "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+    "name": "Wrapped BTC",
+    "symbol": "WBTC",
+    "decimals": 8,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x078d782b760474a361dda0af3839290b0ef57ad6": {
+    "address": "0x078d782b760474a361dda0af3839290b0ef57ad6",
+    "name": "USDC",
+    "symbol": "USDC",
+    "decimals": 6,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x15d0e0c55a3e7ee67152ad7e89acf164253ff68d": {
+    "address": "0x15d0e0c55a3e7ee67152ad7e89acf164253ff68d",
+    "name": "HYPE",
+    "symbol": "HYPE",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x20cab320a855b39f724131c69424240519573f81": {
+    "address": "0x20cab320a855b39f724131c69424240519573f81",
+    "name": "Dai Stablecoin",
+    "symbol": "DAI",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x2416092f143378750bb29b79ed961ab195cceea5": {
+    "address": "0x2416092f143378750bb29b79ed961ab195cceea5",
+    "name": "Renzo Restaked ETH",
+    "symbol": "ezETH",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x4200000000000000000000000000000000000006": {
+    "address": "0x4200000000000000000000000000000000000006",
+    "name": "Wrapped Ether",
+    "symbol": "WETH",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x588ce4f028d8e7b53b687865d6a67b3a54c75518": {
+    "address": "0x588ce4f028d8e7b53b687865d6a67b3a54c75518",
+    "name": "Tether USD",
+    "symbol": "USDT",
+    "decimals": 6,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x6376f64701d4947e6f7b8ac8cb8d54db625d0bbd": {
+    "address": "0x6376f64701d4947e6f7b8ac8cb8d54db625d0bbd",
+    "name": "Degen Arena",
+    "symbol": "DEGEN",
+    "decimals": 9,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x688d9d733866f1af65aa639834139d781aa04aaa": {
+    "address": "0x688d9d733866f1af65aa639834139d781aa04aaa",
+    "name": "Aegis",
+    "symbol": "AG",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x73e0c0d45e048d25fc26fa3159b0aa04bfa4db98": {
+    "address": "0x73e0c0d45e048d25fc26fa3159b0aa04bfa4db98",
+    "name": "Kraken Wrapped Bitcoin",
+    "symbol": "kBTC",
+    "decimals": 8,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x79919862484ef7a62e1fe2519b23ddb1ee860f28": {
+    "address": "0x79919862484ef7a62e1fe2519b23ddb1ee860f28",
+    "name": "Fly",
+    "symbol": "FLY",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x7dcc39b4d1c53cb31e1abc0e358b43987fef80f7": {
+    "address": "0x7dcc39b4d1c53cb31e1abc0e358b43987fef80f7",
+    "name": "Wrapped eETH",
+    "symbol": "weETH",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x81908bbaad3f6fc74093540ab2e9b749bb62aa0d": {
+    "address": "0x81908bbaad3f6fc74093540ab2e9b749bb62aa0d",
+    "name": "Venus XVS",
+    "symbol": "XVS",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x8f187aa05619a017077f5308904739877ce9ea21": {
+    "address": "0x8f187aa05619a017077f5308904739877ce9ea21",
+    "name": "Uniswap",
+    "symbol": "UNI",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x9151434b16b9763660705744891fa906f660ecc5": {
+    "address": "0x9151434b16b9763660705744891fa906f660ecc5",
+    "name": "USD₮0",
+    "symbol": "USD₮0",
+    "decimals": 6,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x926dc7b96bb2f4a91c2a67e291faf482691a3001": {
+    "address": "0x926dc7b96bb2f4a91c2a67e291faf482691a3001",
+    "name": "UNICORN",
+    "symbol": "UNICORN",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x927b51f251480a681271180da4de28d44ec4afb8": {
+    "address": "0x927b51f251480a681271180da4de28d44ec4afb8",
+    "name": "Wrapped BTC",
+    "symbol": "WBTC",
+    "decimals": 8,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x9a426370a41e9f3ad4334d0ce2ce7ccc89401ff2": {
+    "address": "0x9a426370a41e9f3ad4334d0ce2ce7ccc89401ff2",
+    "name": "UniPeg",
+    "symbol": "PEG",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0xa84a8acc04cd47e18bf5af826ab00d5026552ea5": {
+    "address": "0xa84a8acc04cd47e18bf5af826ab00d5026552ea5",
+    "name": "UniDoge",
+    "symbol": "UNIDOGE",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0xb6a3e8e5715fd4c99ecedaaae121bde4ab6a1ef1": {
+    "address": "0xb6a3e8e5715fd4c99ecedaaae121bde4ab6a1ef1",
+    "name": "Coinbase Wrapped BTC",
+    "symbol": "cbBTC",
+    "decimals": 8,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0xb933b6ff1fca74279ef811608baa006ae0d36635": {
+    "address": "0xb933b6ff1fca74279ef811608baa006ae0d36635",
+    "name": "UCF Finance",
+    "symbol": "UCF",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0xc02fe7317d4eb8753a02c35fe019786854a92001": {
+    "address": "0xc02fe7317d4eb8753a02c35fe019786854a92001",
+    "name": "Wrapped liquid staked Ether 2.0",
+    "symbol": "wstETH",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0xc3300bc61a191e2d6d2b36b4ddb3b82c9d5d1d4d": {
+    "address": "0xc3300bc61a191e2d6d2b36b4ddb3b82c9d5d1d4d",
+    "name": "Aegis",
+    "symbol": "AG",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0xc3eacf0612346366db554c991d7858716db09f58": {
+    "address": "0xc3eacf0612346366db554c991d7858716db09f58",
+    "name": "KelpDao Restaked ETH",
+    "symbol": "rsETH",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0xd4390b4a41a1057ae0acdd4b9435a0c7555ab464": {
+    "address": "0xd4390b4a41a1057ae0acdd4b9435a0c7555ab464",
+    "name": "ABE",
+    "symbol": "ABE",
+    "decimals": 9,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0xdf78e4f0a8279942ca68046476919a90f2288656": {
+    "address": "0xdf78e4f0a8279942ca68046476919a90f2288656",
+    "name": "Compound",
+    "symbol": "COMP",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0xfe713ea2832575d963a4d702c5554d4d8721c8f5": {
+    "address": "0xfe713ea2832575d963a4d702c5554d4d8721c8f5",
+    "name": "BitcoinBR",
+    "symbol": "BTCBR",
+    "decimals": 18,
+    "fetchedAt": "2026-08-29T11:45:01.083Z"
+  }
+}

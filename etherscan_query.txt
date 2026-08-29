@@ -1,0 +1,11 @@
+curl -G 'https://api.etherscan.io/v2/api' \
+  --data-urlencode 'chainid=130' \
+  --data-urlencode 'module=logs' \
+  --data-urlencode 'action=getLogs' \
+  --data-urlencode 'address=0x1f98400000000000000000000000000000000004' \
+  --data-urlencode 'fromBlock=25565' \
+  --data-urlencode 'toBlock=latest' \
+  --data-urlencode 'topic0=0xdd466e674ea557f56295e2d0218a125ea4b4f0f6f3307b95f85e6110838d6438' \
+  --data-urlencode 'topic2=0x000000000000000000000000927B51f251480a681271180DA4de28D44EC4AfB8' \
+  --data-urlencode 'topic0_2_opr=and' \
+  --data-urlencode 'apikey=$ETHERSCAN_API'
