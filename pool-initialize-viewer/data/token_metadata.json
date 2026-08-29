@@ -1,9 +1,9 @@
 {
   "0x0000000000000000000000000000000000000000": {
     "address": "0x0000000000000000000000000000000000000000",
-    "name": null,
-    "symbol": null,
-    "decimals": null,
+    "name": "Ether",
+    "symbol": "ETH",
+    "decimals": 18,
     "fetchedAt": "2026-08-29T11:45:01.082Z"
   },
   "0x0555e30da8f98308edb960aa94c0db47230d2b9c": {
