@@ -1,6 +1,21 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
+export function normalizeAddress(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed) return trimmed;
+
+  const lower = trimmed.toLowerCase();
+  const hex = lower.startsWith("0x") ? lower.slice(2) : lower;
+
+  if (!/^[0-9a-f]+$/.test(hex)) {
+    return trimmed;
+  }
+
+  const compact = hex.length > 40 ? hex.slice(-40) : hex;
+  return `0x${compact}`;
+}
+
 const defaultChainId = "130";
 const dataDirectory = path.join(process.cwd(), "data");
 const filePattern = /^pool_initialize_logs_(.+)\.json$/;
@@ -23,21 +38,6 @@ export type TokenMetadataRecord = {
   symbol?: string | null;
   address?: string;
 };
-
-export function normalizeAddress(value: string): string {
-  const trimmed = value.trim();
-  if (!trimmed) return trimmed;
-
-  const lower = trimmed.toLowerCase();
-  const hex = lower.startsWith("0x") ? lower.slice(2) : lower;
-
-  if (!/^[0-9a-f]+$/.test(hex)) {
-    return trimmed;
-  }
-
-  const compact = hex.length > 40 ? hex.slice(-40) : hex;
-  return `0x${compact}`;
-}
 
 export async function getTokenMetadataMap(): Promise<Record<string, TokenMetadataRecord>> {
   const metadata = JSON.parse(

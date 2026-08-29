@@ -71,3 +71,22 @@ export function TokenNameLink({ address, name, symbol, className = "" }: TokenNa
     </a>
   );
 }
+
+type AddressDisplayProps = {
+  address: string;
+  className?: string;
+  label?: string;
+};
+
+export function AddressDisplay({ address, className = "", label }: AddressDisplayProps) {
+  return (
+    <div className={className}>
+      {label && (
+        <h3 className="m-0 font-mono text-[14px] uppercase tracking-[.08em] text-[#8d9b93]">
+          {label}
+        </h3>
+      )}
+      <AddressCopyButton address={address} className="w-fit max-w-full" />
+    </div>
+  );
+}

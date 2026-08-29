@@ -1,14 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { decodeAbiParameters, parseAbiParameters } from "viem";
 
-import { AddressCopyButton } from "@/components/poolInitialize/AddressDisplay";
-import { ResultCard } from "@/components/poolInitialize/ResultCard";
+import { AddressCopyButton, AddressDisplay } from "@/components/poolInitialize/AddressDisplay";
 import { getPoolLog, getPoolLogs, getTokenMetadataMap, normalizeAddress } from "@/lib/logs";
-
-const poolConfigAbi = parseAbiParameters(
-  "uint24 fee, int24 tickSpacing, address hooks, uint160 hiddenUint160, int24 hiddenInt24",
-);
+import { buildGroupedTradeTokens, getPoolEntriesForLog, getTokenDisplay } from "@/lib/poolInitialize";
 
 export async function generateStaticParams() {
   const logs = await getPoolLogs();
@@ -18,69 +13,14 @@ export async function generateStaticParams() {
 export default async function PoolInitializeDetail({ params }: PageProps<"/poolInitialize/[addr]">) {
   const { addr } = await params;
   const log = await getPoolLog(addr);
-  const tokenMetadata = await getTokenMetadataMap();
 
   if (!log) notFound();
 
-  const logData = (log.data as { generated_at?: string; data?: { result?: Array<Record<string, unknown>> } } | undefined) ?? {};
+  const tokenMetadata = await getTokenMetadataMap();
+  const tokenTitle = getTokenDisplay(log.address, tokenMetadata);
+  const logData = (log.data as { generated_at?: string } | undefined) ?? {};
   const generatedAt = logData.generated_at;
-  const results = Array.isArray(logData.data?.result) ? logData.data.result : [];
-
-  const tokenTitle = (() => {
-    const normalized = normalizeAddress(log.address);
-    const tokenMeta = tokenMetadata[normalized.toLowerCase()];
-    const name = tokenMeta?.name ?? "Unknown token";
-    const symbol = tokenMeta?.symbol ?? "UNK";
-    return { name, symbol };
-  })();
-
-  const formatTokenDisplay = (rawAddress: string) => {
-    const normalized = normalizeAddress(rawAddress);
-    const tokenMeta = tokenMetadata[normalized.toLowerCase()];
-    const name = tokenMeta?.name ?? "Unknown token";
-    const symbol = tokenMeta?.symbol ?? "UNK";
-    return {
-      name,
-      symbol,
-      address: normalized,
-    };
-  };
-
-  const decodePoolConfig = (rawData: string) => {
-    if (!rawData || !rawData.startsWith("0x")) {
-      return {
-        fee: null,
-        tickSpacing: null,
-        hooks: null,
-        hiddenUint160: null,
-        hiddenInt24: null,
-      };
-    }
-
-    try {
-      const [fee, tickSpacing, hooks, hiddenUint160, hiddenInt24] = decodeAbiParameters(
-        poolConfigAbi,
-        rawData as `0x${string}`,
-      );
-
-      return {
-        fee: fee !== undefined ? Number(fee) : null,
-        tickSpacing: tickSpacing !== undefined ? Number(tickSpacing) : null,
-        hooks: hooks !== undefined ? hooks : null,
-        hiddenUint160: hiddenUint160 !== undefined ? hiddenUint160.toString() : null,
-        hiddenInt24: hiddenInt24 !== undefined ? Number(hiddenInt24) : null,
-      };
-    } catch (error) {
-      console.warn("Failed to decode pool config data:", error);
-      return {
-        fee: null,
-        tickSpacing: null,
-        hooks: null,
-        hiddenUint160: null,
-        hiddenInt24: null,
-      };
-    }
-  };
+  const groupedTokens = buildGroupedTradeTokens(log.address, getPoolEntriesForLog(log, tokenMetadata));
 
   return (
     <main className="mx-auto w-[min(100%-48px,980px)] pt-[54px] pb-12">
@@ -110,37 +50,46 @@ export default async function PoolInitializeDetail({ params }: PageProps<"/poolI
         </p>
       )}
 
-      <section className="mt-9" aria-label="Pool initialization results">
-        <h2 className="mb-4 text-[20px] font-semibold">Results</h2>
+      <section className="mt-9" aria-label="Tradeable token results">
+        <h2 className="mb-4 text-[20px] font-semibold">Tradeable tokens</h2>
         <ul className="m-0 list-none p-0 space-y-4">
-          {results
-            .map((result, index) => {
-              const topics = Array.isArray((result as { topics?: string[] }).topics) ? (result as { topics?: string[] }).topics! : [];
-              const poolId = topics[1] ?? "N/A";
-              const rawData = String((result as { data?: string }).data ?? "0x");
-              const currency0 = formatTokenDisplay(String(topics[2] ?? "0x0000000000000000000000000000000000000000"));
-              const currency1 = formatTokenDisplay(String(topics[3] ?? "0x0000000000000000000000000000000000000000"));
-              const poolConfig = decodePoolConfig(rawData);
+          {groupedTokens.map(({ token, poolCount }, index) => (
+            <li key={token.address} className="rounded-[14px] border border-[#2a3831] bg-[rgba(17,24,21,0.9)] p-4 md:p-5">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="min-w-0">
+                  <div className="font-mono text-[11px] uppercase tracking-[.08em] text-[#f0784b]">
+                    #{index + 1}
+                  </div>
 
-              return {
-                index,
-                poolId,
-                currency0,
-                currency1,
-                poolConfig,
-              };
-            })
-            .filter(({ poolConfig }) => (poolConfig.tickSpacing ?? Number.NEGATIVE_INFINITY) <= 200)
-            .map(({ poolId, currency0, currency1, poolConfig }, index) => (
-              <ResultCard
-                key={`${poolId}-${currency0.address}-${currency1.address}-${index}`}
-                index={index}
-                poolId={poolId}
-                currency0={currency0}
-                currency1={currency1}
-                poolConfig={poolConfig}
-              />
-            ))}
+                  <div className="mt-2 text-[clamp(22px,3vw,32px)] font-semibold text-[#edf4ef]">
+                    {token.name} ({token.symbol})
+                  </div>
+
+                  <AddressDisplay address={token.address} className="mt-2 max-w-full md:max-w-[420px]" />
+                </div>
+
+                <div className="flex items-center gap-4 md:justify-end">
+                  <div className="rounded-xl border border-[#2a3831] bg-[#0d1412] px-4 py-3 text-center">
+                    <div className="font-mono text-[11px] uppercase tracking-[.08em] text-[#8d9b93]">Pools</div>
+                    <div className="mt-2 text-[28px] font-semibold text-[#edf4ef]">{poolCount}</div>
+                  </div>
+
+                  <Link
+                    href={`/poolInitialize/${normalizeAddress(log.address)}/${normalizeAddress(token.address)}`}
+                    className="inline-flex items-center justify-center rounded-md border border-[#f0784b] bg-[#f0784b]/10 px-4 py-2 font-mono text-[11px] uppercase tracking-[.08em] text-[#edf4ef] no-underline transition-colors hover:bg-[#f0784b] hover:text-[#0a120f]"
+                  >
+                    View pools
+                  </Link>
+                </div>
+              </div>
+            </li>
+          ))}
+
+          {groupedTokens.length === 0 && (
+            <li className="rounded-[14px] border border-[#2a3831] bg-[rgba(17,24,21,0.9)] p-5 text-[#8d9b93]">
+              No tradeable tokens found for this token after filtering out tickSpacing &gt; 200.
+            </li>
+          )}
         </ul>
       </section>
     </main>
