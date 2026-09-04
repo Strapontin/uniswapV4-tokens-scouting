@@ -316,6 +316,11 @@ export function PoolQuoteControls({ pools, defaultTokenIn }: PoolQuoteControlsPr
         {rankedPools.map(({ poolId, transactionHash, currency0, currency1, poolConfig }, index) => {
           const quote = quoteMap[poolId];
           const outputTokenAddress = quote?.outputToken ?? null;
+          const outputTokenSymbol = outputTokenAddress
+            ? normalizeAddress(outputTokenAddress).toLowerCase() === normalizeAddress(currency0.address).toLowerCase()
+              ? currency0.symbol
+              : currency1.symbol
+            : null;
           const outputDecimals = quote?.outputDecimals ?? 18;
 
           return (
@@ -330,6 +335,7 @@ export function PoolQuoteControls({ pools, defaultTokenIn }: PoolQuoteControlsPr
               poolConfig={poolConfig}
               quoteOutput={quote?.output ?? null}
               quoteTokenAddress={outputTokenAddress}
+              quoteTokenSymbol={outputTokenSymbol}
               quoteTokenDecimals={outputDecimals}
             />
           );

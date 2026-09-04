@@ -25,6 +25,7 @@ type ResultCardProps = {
   };
   quoteOutput?: bigint | null;
   quoteTokenAddress?: string | null;
+  quoteTokenSymbol?: string | null;
   quoteTokenDecimals?: number;
 };
 
@@ -35,6 +36,7 @@ export function ResultCard({
   poolConfig,
   quoteOutput,
   quoteTokenAddress,
+  quoteTokenSymbol,
   quoteTokenDecimals = 18,
 }: ResultCardProps) {
   const feePercentage = poolConfig.fee === null ? "N/A" : `${(poolConfig.fee / 1_000_000) * 100}%`;
@@ -93,7 +95,12 @@ export function ResultCard({
         <div className="flex items-start justify-between gap-3">
           <div className="flex flex-col gap-1">
             <span className="font-mono text-[11px] uppercase tracking-[.08em] text-[#8d9b93]">Best quote output</span>
-            <strong className="text-[16px] text-[#edf4ef]">{quoteOutputFormatted}</strong>
+            <strong className="text-[16px] text-[#edf4ef]">
+              {quoteOutputFormatted}{quoteTokenSymbol ? ` ${quoteTokenSymbol}` : ""}
+            </strong>
+            <span className="text-[12px] text-[#8d9b93]">
+              {quoteOutput === null || quoteOutput === undefined ? "—" : quoteOutput.toString()}{quoteTokenSymbol ? ` ${quoteTokenSymbol}` : ""}
+            </span>
           </div>
 
           {quoteTokenAddress && (
