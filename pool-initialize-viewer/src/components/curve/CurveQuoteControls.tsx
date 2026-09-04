@@ -19,7 +19,7 @@ type CurveToken = { address: Address; name: string; symbol: string; decimals: nu
 
 function getTokenMetadata(address: Address): CurveToken {
   const normalizedAddress = normalizeAddress(address).toLowerCase();
-  const metadata = (tokenMetadata as Record<string, { name?: string; symbol?: string; decimals?: number }>)[normalizedAddress];
+  const metadata = (tokenMetadata as unknown as Record<string, { name?: string | null; symbol?: string | null; decimals?: number | null }>)[normalizedAddress];
 
   return {
     address,

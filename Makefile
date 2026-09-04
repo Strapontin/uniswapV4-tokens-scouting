@@ -7,6 +7,12 @@ VIEWER_DIR := pool-initialize-viewer
 install:
 	npm install
 
+# Fetch Uniswap PoolManager "Initialize" logs from the Etherscan API for a target token,
+# save the raw JSON response, and store it in a timestamped file in the project root.
+py:
+	@test -n "$(TOKEN)" || (echo "Usage: make py TOKEN=0x..." >&2; exit 1)
+	python script.py "$(TOKEN)"
+	
 # Scan all JSON logs in ./logs, collect token addresses from the Initialize events,
 # fetch missing ERC20 metadata (name, symbol, decimals) with viem,
 # and save the merged results to ./logs/token_metadata.json.
@@ -44,12 +50,6 @@ build:
 # Run the compiled JS output.
 start:
 	npm run start
-
-# Fetch Uniswap PoolManager "Initialize" logs from the Etherscan API for a target token,
-# save the raw JSON response, and store it in a timestamped file in the project root.
-py:
-	@test -n "$(TOKEN)" || (echo "Usage: make py TOKEN=0x..." >&2; exit 1)
-	python script.py "$(TOKEN)"
 
 # Clean built artifacts and installed modules.
 clean:

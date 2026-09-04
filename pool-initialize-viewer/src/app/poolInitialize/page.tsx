@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getPoolLogs } from "@/lib/logs";
 import { PoolListItem } from "@/components/poolInitialize/PoolListItem";
 
@@ -6,6 +7,9 @@ export default async function PoolInitializePage() {
 
   return (
     <main className="mx-auto w-[min(100%-48px,980px)] py-[92px]">
+      <Link className="text-[14px] text-[#8d9b93] no-underline transition-colors hover:text-[#f0784b]" href="/">
+        ← Back home
+      </Link>
       <div className="font-mono text-[11px] font-bold uppercase tracking-[.08em] text-[#f0784b]">
         Uniswap v4 / event archive
       </div>

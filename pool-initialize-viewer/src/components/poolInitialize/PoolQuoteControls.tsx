@@ -56,7 +56,7 @@ async function getTokenDecimals(addresses: string[]) {
 
 function getMetadataDecimals(address: string): number {
   const normalizedAddress = normalizeAddress(address).toLowerCase();
-  const entry = (tokenMetadata as Record<string, { decimals?: number }>)[normalizedAddress];
+  const entry = (tokenMetadata as unknown as Record<string, { decimals?: number | null }>)[normalizedAddress];
 
   return Number(entry?.decimals ?? 18);
 }
