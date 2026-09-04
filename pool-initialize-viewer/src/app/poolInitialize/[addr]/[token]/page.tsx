@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 
 import { AddressCopyButton, AddressDisplay } from "@/components/poolInitialize/AddressDisplay";
 import { PoolQuoteControls } from "@/components/poolInitialize/PoolQuoteControls";
-import { ResultCard } from "@/components/poolInitialize/ResultCard";
 import { getPoolLog, getPoolLogs, getTokenMetadataMap, normalizeAddress } from "@/lib/logs";
 import { buildGroupedTradeTokens, getPoolEntriesForLog, getTokenDisplay } from "@/lib/poolInitialize";
 

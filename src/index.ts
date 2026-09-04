@@ -11,11 +11,11 @@ const client = createPublicClient({
 });
 
 const DEFAULT_CHAIN_ID = "130";
-const LOGS_DIR = "./logs";
-const OUTPUT_FILE = join(LOGS_DIR, "token_metadata.json");
+const DATA_DIR = "./pool-initialize-viewer/data";
+const OUTPUT_FILE = join(DATA_DIR, "token_metadata.json");
 
-function getChainLogsDir(chainId: string = DEFAULT_CHAIN_ID) {
-  return join(LOGS_DIR, chainId);
+function getChainDataDir(chainId: string = DEFAULT_CHAIN_ID) {
+  return join(DATA_DIR, chainId);
 }
 
 type TokenMetadata = {
@@ -68,21 +68,21 @@ function readExistingMetadata(): TokenMetadataMap {
   }
 }
 
-function collectAddressesFromLogs(chainId: string = DEFAULT_CHAIN_ID): Address[] {
-  const chainLogsDir = getChainLogsDir(chainId);
+function collectAddressesFromData(chainId: string = DEFAULT_CHAIN_ID): Address[] {
+  const chainDataDir = getChainDataDir(chainId);
 
-  if (!existsSync(chainLogsDir)) {
-    console.log(`${chainLogsDir} not found`);
+  if (!existsSync(chainDataDir)) {
+    console.log(`Data directory not found: ${chainDataDir}`);
     return [];
   }
 
-  const files = readdirSync(chainLogsDir).filter((file) => file.endsWith(".json"));
+  const files = readdirSync(chainDataDir).filter((file) => file.endsWith(".json"));
   const addresses = new Set<string>();
 
   for (const file of files) {
     if (file === "token_metadata.json") continue;
 
-    const filePath = join(chainLogsDir, file);
+    const filePath = join(chainDataDir, file);
     const raw = readFileSync(filePath, "utf8");
 
     try {
@@ -160,16 +160,17 @@ async function fetchTokenMetadata(addresses: Address[]) {
 }
 
 async function main() {
-  const addresses = collectAddressesFromLogs(DEFAULT_CHAIN_ID);
+  const addresses = collectAddressesFromData(DEFAULT_CHAIN_ID);
   const existing = readExistingMetadata();
   const missing = addresses.filter((address) => !(address.toLowerCase() in existing));
 
-  console.log(`Addresses found in logs: ${addresses.length}`);
-  console.log(`Already fetched: ${Object.keys(existing).length}`);
-  console.log(`Missing metadata: ${missing.length}`);
+  console.log(`Source data directory: ${getChainDataDir(DEFAULT_CHAIN_ID)}`);
+  console.log(`Token addresses found: ${addresses.length}`);
+  console.log(`Metadata entries already cached: ${Object.keys(existing).length}`);
+  console.log(`Token addresses missing metadata: ${missing.length}`);
 
   if (missing.length === 0) {
-    console.log(`No new token metadata to fetch. Output file exists at ${OUTPUT_FILE}`);
+    console.log(`No new token metadata to fetch. Metadata file: ${OUTPUT_FILE}`);
     return;
   }
 

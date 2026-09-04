@@ -48,7 +48,8 @@ start:
 # Fetch Uniswap PoolManager "Initialize" logs from the Etherscan API for a target token,
 # save the raw JSON response, and store it in a timestamped file in the project root.
 py:
-	python script.py
+	@test -n "$(TOKEN)" || (echo "Usage: make py TOKEN=0x..." >&2; exit 1)
+	python script.py "$(TOKEN)"
 
 # Clean built artifacts and installed modules.
 clean:

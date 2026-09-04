@@ -3,6 +3,7 @@ import { AddressCopyButton } from "@/components/poolInitialize/AddressDisplay";
 type ResultCardProps = {
   index: number;
   poolId: string;
+  tokenInAddress?: string;
   currency0: {
     name: string;
     symbol: string;
@@ -28,8 +29,6 @@ type ResultCardProps = {
 export function ResultCard({
   index,
   poolId,
-  currency0,
-  currency1,
   poolConfig,
   quoteOutput,
   quoteTokenAddress,
@@ -61,6 +60,7 @@ export function ResultCard({
           <div className="flex flex-col gap-1">
             <span className="font-mono text-[11px] uppercase tracking-[.08em] text-[#8d9b93]">fee</span>
             <strong className="text-[16px] text-[#edf4ef]">{feePercentage}</strong>
+            <span className="text-[12px] text-[#8d9b93]">{poolConfig.fee ?? "N/A"}</span>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -81,8 +81,15 @@ export function ResultCard({
             <span className="font-mono text-[11px] uppercase tracking-[.08em] text-[#8d9b93]">Best quote output</span>
             <strong className="text-[16px] text-[#edf4ef]">{quoteOutputFormatted}</strong>
           </div>
+
+          {quoteTokenAddress && (
+            <div className="ml-auto max-w-[220px]">
+              <AddressCopyButton address={quoteTokenAddress} className="w-fit max-w-full" />
+            </div>
+          )}
         </div>
       </div>
+
     </li>
   );
 }

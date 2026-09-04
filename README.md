@@ -2,6 +2,16 @@
 
 This project is a minimal TypeScript + viem setup for interacting with EVM networks.
 
+## Add new token:
+
+### Run python script
+
+`make py TOKEN=0xaddr`
+
+### Fetch tokens name
+
+`make findtokennames`
+
 ## Setup
 
 ```bash

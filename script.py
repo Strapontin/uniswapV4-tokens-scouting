@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 from datetime import datetime
@@ -52,12 +53,12 @@ def get_pool_initialize_logs(token_id: str, chain_id: int | str = 130):
     }
 
 
-def save_logs_to_json(token_id: str = "token", chain_id: int | str = 130):
-    result = get_pool_initialize_logs(token_id, chain_id=chain_id)
+def save_logs_to_json(token_address: str = "token", chain_id: int | str = 130):
+    result = get_pool_initialize_logs(token_address, chain_id=chain_id)
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     payload = {
         "generated_at": timestamp,
-        "token_id": token_id,
+        "token_id": token_address,
         "chain_id": str(chain_id),
         "data": result,
     }
@@ -66,15 +67,18 @@ def save_logs_to_json(token_id: str = "token", chain_id: int | str = 130):
     output_dir = base_dir / str(chain_id)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    file_name = f"pool_initialize_logs_{token_id}.json"
+    file_name = f"pool_initialize_logs_{token_address}.json"
     output_path = output_dir / file_name
     output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return payload, str(output_path)
 
 
 if __name__ == "__main__":
-    token_id = "927B51f251480a681271180DA4de28D44EC4AfB8"
-    result, file_name = save_logs_to_json(token_id)
+    parser = argparse.ArgumentParser(description="Fetch Uniswap v4 pool initialize logs for a token")
+    parser.add_argument("token_address", help="ERC-20 token address")
+    args = parser.parse_args()
+
+    result, file_name = save_logs_to_json(args.token_address)
 
     print("Pool Initialize Logs")
     print("-" * 40)

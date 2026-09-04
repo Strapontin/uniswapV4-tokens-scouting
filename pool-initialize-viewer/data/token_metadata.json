@@ -194,5 +194,68 @@
     "symbol": "BTCBR",
     "decimals": 18,
     "fetchedAt": "2026-08-29T11:45:01.083Z"
+  },
+  "0x02a24c380da560e4032dc6671d8164cfbeeaae1e": {
+    "address": "0x02a24c380da560e4032dc6671d8164cfbeeaae1e",
+    "name": "Aave Token",
+    "symbol": "AAVE",
+    "decimals": 18,
+    "fetchedAt": "2026-09-04T07:42:15.659Z"
+  },
+  "0x39538c45f6fd0b0dd3e595ed1c2671875fee9f17": {
+    "address": "0x39538c45f6fd0b0dd3e595ed1c2671875fee9f17",
+    "name": "Hooffather",
+    "symbol": "HOOF",
+    "decimals": 18,
+    "fetchedAt": "2026-09-04T07:42:15.659Z"
+  },
+  "0x46e751c3c786e04c086ea9191cc5c95e8a91a828": {
+    "address": "0x46e751c3c786e04c086ea9191cc5c95e8a91a828",
+    "name": "Unicorn",
+    "symbol": "UNICORN",
+    "decimals": 18,
+    "fetchedAt": "2026-09-04T07:42:15.659Z"
+  },
+  "0x54ff502df96cd9b9585094eacd86aafce902d06a": {
+    "address": "0x54ff502df96cd9b9585094eacd86aafce902d06a",
+    "name": "EVK Vault ewstETH-1",
+    "symbol": "ewstETH-1",
+    "decimals": 18,
+    "fetchedAt": "2026-09-04T07:42:15.659Z"
+  },
+  "0x68a6dbc7214a0f2b0d875963663f1613814e8829": {
+    "address": "0x68a6dbc7214a0f2b0d875963663f1613814e8829",
+    "name": "Lido DAO Token",
+    "symbol": "LDO",
+    "decimals": 18,
+    "fetchedAt": "2026-09-04T07:42:15.659Z"
+  },
+  "0x89f7c0870794103744c8042630cc1c846a858e57": {
+    "address": "0x89f7c0870794103744c8042630cc1c846a858e57",
+    "name": "Paxos Gold",
+    "symbol": "PAXG",
+    "decimals": 18,
+    "fetchedAt": "2026-09-04T07:42:15.659Z"
+  },
+  "0x94cac393f3444cef63a651ffc18497e7e8bd036a": {
+    "address": "0x94cac393f3444cef63a651ffc18497e7e8bd036a",
+    "name": "Rocket Pool ETH",
+    "symbol": "rETH",
+    "decimals": 18,
+    "fetchedAt": "2026-09-04T07:42:15.659Z"
+  },
+  "0xbec19bef402c697a7be315d3e59e5f65b89fa1bb": {
+    "address": "0xbec19bef402c697a7be315d3e59e5f65b89fa1bb",
+    "name": "Venus wstETH (Core)",
+    "symbol": "vwstETH_Core",
+    "decimals": 8,
+    "fetchedAt": "2026-09-04T07:42:15.659Z"
+  },
+  "0xd7c28129baf6e11e4f3516b212c50b44cf4e1d6a": {
+    "address": "0xd7c28129baf6e11e4f3516b212c50b44cf4e1d6a",
+    "name": "tinyass unicorns",
+    "symbol": "TINY",
+    "decimals": 18,
+    "fetchedAt": "2026-09-04T07:42:15.659Z"
   }
 }

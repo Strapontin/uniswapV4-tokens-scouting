@@ -179,7 +179,6 @@ export function PoolQuoteControls({ pools, defaultTokenIn }: PoolQuoteControlsPr
         const currency0 = normalizeAddress(pool.currency0.address);
         const currency1 = normalizeAddress(pool.currency1.address);
         const isZeroForOne = currency0.toLowerCase() === normalizedTokenIn.toLowerCase();
-        const outputToken = isZeroForOne ? currency1 : currency0;
 
         return {
           address: QUOTER_ADDRESS,
@@ -324,6 +323,7 @@ export function PoolQuoteControls({ pools, defaultTokenIn }: PoolQuoteControlsPr
               key={`${poolId}-${currency0.address}-${currency1.address}-${index}`}
               index={index}
               poolId={poolId}
+              tokenInAddress={tokenIn}
               currency0={currency0}
               currency1={currency1}
               poolConfig={poolConfig}
