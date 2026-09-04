@@ -129,7 +129,7 @@ export function CurveQuoteControls({ poolAddress }: { poolAddress: Address }) {
         <div className="mt-4 rounded-[14px] border border-[#2a3831] bg-[rgba(17,24,21,0.9)] p-4 md:p-5">
           <span className="font-mono text-[11px] uppercase tracking-[.08em] text-[#8d9b93]">exchange output</span>
           <strong className="mt-2 block text-[24px] text-[#edf4ef]">{formatUnits(quote, tokenOut.decimals)} {tokenOut.symbol}</strong>
-          <span className="mt-1 block font-mono text-[12px] text-[#8d9b93]">{quote.toString()} base units</span>
+          <span className="mt-1 block font-mono text-[12px] text-[#8d9b93]">{quote.toString()} {tokenOut.symbol}</span>
         </div>
       )}
     </section>
