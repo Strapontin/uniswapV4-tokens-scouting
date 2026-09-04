@@ -313,7 +313,7 @@ export function PoolQuoteControls({ pools, defaultTokenIn }: PoolQuoteControlsPr
       </div>
 
       <ul className="m-0 list-none p-0 space-y-4">
-        {rankedPools.map(({ poolId, currency0, currency1, poolConfig }, index) => {
+        {rankedPools.map(({ poolId, transactionHash, currency0, currency1, poolConfig }, index) => {
           const quote = quoteMap[poolId];
           const outputTokenAddress = quote?.outputToken ?? null;
           const outputDecimals = quote?.outputDecimals ?? 18;
@@ -323,6 +323,7 @@ export function PoolQuoteControls({ pools, defaultTokenIn }: PoolQuoteControlsPr
               key={`${poolId}-${currency0.address}-${currency1.address}-${index}`}
               index={index}
               poolId={poolId}
+              transactionHash={transactionHash}
               tokenInAddress={tokenIn}
               currency0={currency0}
               currency1={currency1}

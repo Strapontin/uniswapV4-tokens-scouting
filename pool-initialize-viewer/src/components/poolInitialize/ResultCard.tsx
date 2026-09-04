@@ -1,8 +1,10 @@
 import { AddressCopyButton } from "@/components/poolInitialize/AddressDisplay";
+import Link from "next/link";
 
 type ResultCardProps = {
   index: number;
   poolId: string;
+  transactionHash: string | null;
   tokenInAddress?: string;
   currency0: {
     name: string;
@@ -29,6 +31,7 @@ type ResultCardProps = {
 export function ResultCard({
   index,
   poolId,
+  transactionHash,
   poolConfig,
   quoteOutput,
   quoteTokenAddress,
@@ -47,7 +50,18 @@ export function ResultCard({
           Pool ID
         </h3>
         <h3 className="m-0 font-mono text-[clamp(18px,2vw,22px)] text-[#edf4ef]">
-          {poolId}
+          {transactionHash ? (
+            <Link
+              href={`https://uniscan.xyz/tx/${transactionHash}`}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#edf4ef] no-underline transition-colors hover:text-[#f0784b]"
+            >
+              {poolId}
+            </Link>
+          ) : (
+            poolId
+          )}
         </h3>
       </div>
 

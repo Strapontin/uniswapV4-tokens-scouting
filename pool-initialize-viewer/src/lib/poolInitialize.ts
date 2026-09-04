@@ -22,6 +22,7 @@ export type PoolConfig = {
 
 export type PoolEntry = {
   poolId: string;
+  transactionHash: string | null;
   currency0: PoolToken;
   currency1: PoolToken;
   poolConfig: PoolConfig;
@@ -110,6 +111,7 @@ export function getPoolEntriesForLog(log: PoolLog, tokenMetadata: Record<string,
         ? (result as { topics?: string[] }).topics!
         : [];
       const poolId = topics[1] ?? `N/A-${index}`;
+      const transactionHash = String((result as { transactionHash?: string }).transactionHash ?? "") || null;
       const rawData = String((result as { data?: string }).data ?? "0x");
       const currency0 = getTokenDisplay(String(topics[2] ?? "0x0000000000000000000000000000000000000000"), tokenMetadata);
       const currency1 = getTokenDisplay(String(topics[3] ?? "0x0000000000000000000000000000000000000000"), tokenMetadata);
@@ -117,6 +119,7 @@ export function getPoolEntriesForLog(log: PoolLog, tokenMetadata: Record<string,
 
       return {
         poolId,
+        transactionHash,
         currency0,
         currency1,
         poolConfig,
