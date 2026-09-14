@@ -1,0 +1,21 @@
+{
+  "poolId": "0xd10d359f50ba8d1e0b6c30974a65bf06895fba4bf2b692b2c75d987d3b6b863d",
+  "chainId": "130",
+  "pair": {
+    "currency0": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "name": "Ether",
+      "symbol": "ETH"
+    },
+    "currency1": {
+      "address": "0xc02fe7317d4eb8753a02c35fe019786854a92001",
+      "name": "Wrapped liquid staked Ether 2.0",
+      "symbol": "wstETH"
+    }
+  },
+  "fee": 100,
+  "tickSpacing": 1,
+  "hook": "0x0000000000000000000000000000000000000000",
+  "transactionHash": "0xeb3a739980832c3ffa23e5d02cf163f401aed1aea924b9d75af3afe507ab93e6",
+  "fetchedAt": "2026-09-14T14:48:39.760Z"
+}

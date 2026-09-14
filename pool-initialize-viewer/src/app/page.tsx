@@ -29,6 +29,15 @@ export default function Home() {
           <strong className="mt-8 block text-[24px] text-[#edf4ef]">Pool Initialize</strong>
           <span className="mt-2 block text-[14px] text-[#8d9b93]">Browse Uniswap v4 pool events.</span>
         </Link>
+
+        <Link
+          href="/twap"
+          className="rounded-[14px] border border-[#2a3831] bg-[rgba(17,24,21,0.9)] p-5 no-underline transition-colors hover:border-[#f0784b]"
+        >
+          <span className="font-mono text-[11px] uppercase tracking-[.08em] text-[#f0784b]">03</span>
+          <strong className="mt-8 block text-[24px] text-[#edf4ef]">TWAP pools</strong>
+          <span className="mt-2 block text-[14px] text-[#8d9b93]">Find and inspect Uniswap v4 pool metadata.</span>
+        </Link>
       </div>
     </main>
   );

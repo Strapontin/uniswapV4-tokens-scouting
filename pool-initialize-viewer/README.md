@@ -9,6 +9,13 @@ npm install
 npm run dev
 ```
 
+Set `GRAPH_API_KEY` in the environment before starting the app so the TWAP
+detail page can load hourly prices from The Graph:
+
+```bash
+export GRAPH_API_KEY="your-api-key"
+```
+
 Open [http://localhost:3000/poolInitialize](http://localhost:3000/poolInitialize).
 
 The app reads matching `pool_initialize_logs_*.json` files and token metadata
